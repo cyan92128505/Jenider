@@ -34,3 +34,5 @@ export type Store = Omit<VuexStore<State>, 'getters' | 'commit' | 'dispatch'> & 
 export function useStore() {
   return store as Store;
 }
+
+export default store;
