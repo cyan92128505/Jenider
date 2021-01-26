@@ -1,9 +1,9 @@
 import { ActionTree, ActionContext } from 'vuex';
+import Fate from '@/models/fate';
 import { State } from './state';
 import { Mutations } from './mutations';
 import { ActionTypes } from './action-types';
 import { MutationTypes } from './mutation-types';
-import Fate from '../models/fate';
 
 type AugmentedActionContext = {
   commit<K extends keyof Mutations>(

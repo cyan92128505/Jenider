@@ -1,6 +1,6 @@
 <template>
   <div>FateInput
-    <h1>{{ msg }}</h1>
+    <h1>{{ propcessMsg }}</h1>
     <el-form ref="form">
       <el-form-item label="Question">
         <el-input v-model="form.question"></el-input>
@@ -40,6 +40,10 @@ export default defineComponent({
     onSubmit() {
       console.log('submit!');
     },
+  },
+  setup(props) {
+    const propcessMsg = `${props.msg} - Fate`;
+    return { propcessMsg };
   },
 });
 </script>

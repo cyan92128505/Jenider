@@ -1,6 +1,6 @@
 import { GetterTree } from 'vuex';
+import Fate from '@/models/fate';
 import { State } from './state';
-import Fate from '../models/fate';
 
 export type Getters = {
   getFateList(state: State): Fate[];

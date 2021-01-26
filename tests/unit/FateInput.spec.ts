@@ -8,6 +8,6 @@ describe('FateInput.vue', () => {
     const wrapper = shallowMount(FateInput, {
       props: { msg },
     });
-    expect(wrapper.text()).to.include(msg);
+    expect(wrapper.text()).to.include(`${msg} - Fate`);
   });
 });

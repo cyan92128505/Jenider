@@ -1,4 +1,4 @@
-import Fate from '../models/fate';
+import Fate from '@/models/fate';
 
 export type AppStoreState = {
   fateList: Fate[];
