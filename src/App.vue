@@ -1,9 +1,17 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <el-container>
+    <el-header>
+      <div id="nav">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link> |
+        <router-link to="/record">Record</router-link>
+      </div>
+    </el-header>
+    <el-main>
+      <router-view />
+    </el-main>
+    <el-footer>Footer</el-footer>
+  </el-container>
 </template>
 
 <style lang="scss">
@@ -26,5 +34,14 @@
       color: #42b983;
     }
   }
+}
+
+.el-header,
+.el-footer {
+  background-color: #b3c0d1;
+}
+
+.el-main {
+  background-color: #e9eef3;
 }
 </style>
