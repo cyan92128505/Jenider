@@ -1,7 +1,21 @@
 <template>
   <div>FateInput
-        <h1>{{ msg }}</h1>
-
+    <h1>{{ msg }}</h1>
+    <el-form ref="form">
+      <el-form-item label="Question">
+        <el-input v-model="form.question"></el-input>
+      </el-form-item>
+      <el-form-item label="Result">
+        <el-input v-model="form.result"></el-input>
+      </el-form-item>
+      <el-form-item label="Date">
+        <el-input v-model="form.date"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">Create</el-button>
+        <el-button>Cancel</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
@@ -10,8 +24,22 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'FateInput',
+  data() {
+    return {
+      form: {
+        question: '',
+        result: '',
+        date: '',
+      },
+    };
+  },
   props: {
     msg: String,
+  },
+  methods: {
+    onSubmit() {
+      console.log('submit!');
+    },
   },
 });
 </script>

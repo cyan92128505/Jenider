@@ -1,11 +1,8 @@
 <template>
   <el-container>
     <el-header>
-      <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
-        <router-link to="/record">Record</router-link>
-      </div>
+      <el-link href="/">JENIDER</el-link>
+      <router-link to="/record"><el-button icon="el-icon-document" circle /></router-link>
     </el-header>
     <el-main>
       <el-row>
@@ -14,7 +11,9 @@
         </el-col>
       </el-row>
     </el-main>
-    <el-footer>Footer</el-footer>
+    <el-footer>
+      <router-link to="/about"><el-button icon="el-icon-info" circle /></router-link>
+    </el-footer>
   </el-container>
 </template>
 
@@ -23,26 +22,6 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-}
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 
 .el-container {
@@ -54,11 +33,12 @@ body {
 
 .el-header,
 .el-footer {
-  background-color: #b3c0d1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .el-main {
-  background-color: #e9eef3;
   flex-grow: 2;
   flex-shrink: 1;
   flex-basis: 0%;
