@@ -7,8 +7,14 @@
       <el-form-item>
         <el-button type="primary" @click="createTask">Create</el-button>
       </el-form-item>
+      <el-form-item style="margin:0;display:none;">
+        <el-input @keyup="createTask"></el-input>
+      </el-form-item>
       <el-form-item>
         <fate-result v-if="result!=''" :result="result"></fate-result>
+      </el-form-item>
+      <el-form-item v-for="poemImage in poemImages" :key="poemImage">
+        <el-image  :src="poemImage" :fit="'fill'"></el-image>
       </el-form-item>
     </el-form>
   </div>
@@ -27,6 +33,9 @@ export default defineComponent({
   name: 'FateForm',
   setup() {
     const state = reactive(new Fate());
+    const poem = reactive({
+      poemImages: [] as string[],
+    });
     const store = useStore();
 
     const createTask = () => {
@@ -34,7 +43,10 @@ export default defineComponent({
         state.question === ''
       ) return;
 
-      state.result = DarwLots.Exec(state.question);
+      const darw = DarwLots.Exec(state.question);
+
+      state.result = darw.result;
+      poem.poemImages = darw.poemImages;
       const fate = new Fate({
         question: state.question,
         result: state.result,
@@ -44,7 +56,7 @@ export default defineComponent({
       store.commit(MutationTypes.SAVE_FATE, fate);
     };
 
-    return { createTask, ...toRefs(state) };
+    return { createTask, ...toRefs(state), ...toRefs(poem) };
   },
 });
 </script>
