@@ -4,27 +4,26 @@
       <el-form-item label="Question">
         <el-input v-model="question"></el-input>
       </el-form-item>
-      <el-form-item label="Result">
-        <el-input v-model="result" type="textarea" readonly :rows="10"></el-input>
-      </el-form-item>
-      <el-form-item label="Date">
-        <el-input v-model="datetime" readonly></el-input>
-      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="createTask">Create</el-button>
-        <el-button>Cancel</el-button>
+      </el-form-item>
+      <el-form-item>
+        <fate-result v-if="result!=''" :result="result"></fate-result>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
+import { defineComponent, reactive, toRefs, h } from 'vue';
 import { useStore } from '@/store';
 import { MutationTypes } from '@/store/mutation-types';
+import DarwLots from '@/utils/draw_lots';
 import Fate from '@/models/fate';
+import FateResult from './FateResult.vue';
 
 export default defineComponent({
+  components: { FateResult },
   name: 'FateForm',
   setup() {
     const state = reactive(new Fate());
@@ -33,10 +32,9 @@ export default defineComponent({
     const createTask = () => {
       if (
         state.question === ''
-        || state.result === ''
-        || state.datetime === ''
       ) return;
 
+      state.result = DarwLots.Exec(state.question);
       const fate = new Fate({
         question: state.question,
         result: state.result,
@@ -44,7 +42,6 @@ export default defineComponent({
       });
 
       store.commit(MutationTypes.SAVE_FATE, fate);
-      state.reset();
     };
 
     return { createTask, ...toRefs(state) };

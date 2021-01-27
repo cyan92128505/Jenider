@@ -1,4 +1,4 @@
-import { DrawData, FontData } from './darw_data';
+import { DrawData, FontData, Fortunes } from './darw_data';
 
 class DarwLots {
   static Exec(question: string): string {
@@ -28,20 +28,16 @@ class DarwLots {
   }
 
   static Draw(id: number): string {
-    const pureId = (DarwLots.FateNumber(id) % 100) + 1;
-    const rawId = `${pureId}`;
-    let result = DrawData[pureId];
-    for (const iterator of DrawData) {
-      if (iterator.id === rawId) {
-        result = iterator;
-      }
-    }
+    const pureId = DarwLots.FateNumber(id) % 100;
+    const result = Fortunes[pureId];
     let content = '';
-    content += `第 ${result.id} 籤\n`;
-    content += `${result.type}\n\n`;
-    content += `${DarwLots.SpliceText(result.poem)}\n\n`;
-    content += `${DarwLots.SpliceText(result.explain)}\n\n`;
-    content += `${JSON.stringify(result.result, null, 4)}`;
+    content += `${result.編號}籤 ${result.運勢}\n`;
+    content += `${result.內容.中文.join('\n')}\n \n`;
+    content += `${result.解籤.中文.join('\n')}\n\n`;
+
+    for (const iterator of result.解答) {
+      content += `${iterator.key}: ${iterator.value}\n`;
+    }
 
     return content;
   }
