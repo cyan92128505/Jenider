@@ -1,4 +1,4 @@
-# jenider
+# Jenider
 
 ## Project setup
 ```
